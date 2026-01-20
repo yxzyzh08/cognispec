@@ -1,0 +1,52 @@
+# llms.txt - Cognispec Project Documentation Index
+# AI-friendly documentation index for autonomous agent interactions
+
+## Project Overview
+
+Cognispec is a Claude Code plugin for AI-native requirements documentation. It transforms vague product ideas into structured, progressive disclosure PRD documents optimized for both AI consumption and human readability.
+
+## Target Users
+
+Independent developers (indie hackers, freelancers) using AI-assisted development.
+
+## Core Workflow
+
+/discover → /research → /prd → /plan → Development
+
+## Key Documents
+
+### Discovery Phase
+- Interview Record: .cognispec/discovery/interview.md
+- Competitor Research: .cognispec/discovery/research.md
+
+### PRD Documents (Progressive Disclosure)
+- Layer 1 - Summary (30s): .cognispec/prd/summary.md
+- Layer 2 - Overview (2min): .cognispec/prd/overview.md
+- Layer 3 - Requirements: .cognispec/prd/requirements.md
+- Layer 4 - Appendix: .cognispec/prd/appendix.md
+
+### Development Planning
+- Architecture: .cognispec/plan/architecture.md
+- Phases: .cognispec/plan/phases.md
+- Tasks (JSON): .cognispec/plan/tasks.json
+- Risks: .cognispec/plan/risks.md
+
+## AI Instructions
+
+1. Start with summary.md for quick project context
+2. Read overview.md for problem/solution understanding
+3. Use requirements.md for specific feature details
+4. Reference appendix.md for technical decisions and glossary
+5. Tasks are in Cognispec native JSON format (simple, human-readable, phase-based)
+
+## Document Conventions
+
+- All documents are in English
+- Markdown with YAML frontmatter
+- Single file < 15KB for context window efficiency
+- Semantic filenames for efficient Glob/Grep search
+
+## Version
+
+- PRD Version: 1.0.0
+- Last Updated: 2024-01-20

@@ -64,6 +64,30 @@ Create four files following progressive disclosure:
 - Research references
 - Change log
 
+#### Step 3: Generate Human-Readable HTML
+
+After generating Markdown files, run the conversion script to create interactive HTML:
+
+1. **Check dependencies** (first time only):
+   ```bash
+   cd .cognispec/scripts && npm install
+   ```
+
+2. **Run conversion script**:
+   ```bash
+   node .cognispec/scripts/md2html.js --backup
+   ```
+
+   The script will:
+   - Backup existing `human/index.html` to `human/backup/{timestamp}/`
+   - Parse all PRD Markdown files using `marked` and `gray-matter`
+   - Generate interactive HTML with progressive disclosure
+   - Output to `.cognispec/prd/human/index.html`
+
+3. **Inform user**:
+   - Tell the user to run the script if they want HTML output
+   - Provide the command to run
+
 ### Quality Checks
 
 Before finalizing, verify:
@@ -340,6 +364,26 @@ The following are explicitly NOT included in this version:
 | Stakeholder | | | Pending |
 ```
 
+### human/index.html
+
+Generated automatically by the conversion script. See `.cognispec/scripts/md2html.js`.
+
+**To generate HTML:**
+```bash
+# First time: install dependencies
+cd .cognispec/scripts && npm install
+
+# Generate HTML (with backup)
+node .cognispec/scripts/md2html.js --backup
+```
+
+**Features:**
+- Progressive disclosure with collapsible sections
+- Sticky navigation bar
+- Inline CSS (works offline)
+- Print-friendly styles
+- Automatic backup before regeneration
+
 ## Next Steps
 
 After PRD generation:
@@ -359,7 +403,7 @@ Generating PRD with progressive disclosure structure...
 
 ✅ PRD generated successfully!
 
-Created files:
+**AI-Optimized Documents (Markdown):**
 - `.cognispec/prd/summary.md` - Executive summary (30秒概览)
 - `.cognispec/prd/overview.md` - Problem & solution (2分钟深入)
 - `.cognispec/prd/requirements.md` - Detailed requirements
@@ -371,6 +415,24 @@ Created files:
 - [x] Clarity: No ambiguous terms detected
 - [x] Consistency: Terminology verified
 - [x] Progressive Disclosure: 4 layers structured
+
+---
+
+📄 **To generate Human-Readable HTML version:**
+
+First time setup (install dependencies):
+```bash
+cd .cognispec/scripts && npm install
+```
+
+Generate HTML:
+```bash
+node .cognispec/scripts/md2html.js --backup
+```
+
+Then open `.cognispec/prd/human/index.html` in your browser.
+
+---
 
 Would you like me to walk through any section, or shall we proceed to `/plan` for development planning?
 ```

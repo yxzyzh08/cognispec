@@ -53,7 +53,7 @@ For each phase, create tasks:
 - Identify dependencies
 - Mark if parallelizable
 
-Format tasks.json for Task-Master-AI compatibility.
+Format tasks.json using Cognispec native format (phase-based, human-readable).
 
 #### Step 4: Risk Analysis
 
@@ -276,54 +276,88 @@ Phase 0 ─┬─▶ Phase 1 ───▶ Phase 2 ───▶ Phase 3
 ```
 
 ### tasks.json
+
+Cognispec native format - phase-based, human-readable structure:
+
 ```json
 {
-  "project": "[Project Name]",
-  "version": "1.0",
-  "generated": "[date]",
-  "tasks": [
+  "metadata": {
+    "project": "[Project Name]",
+    "version": "1.0.0",
+    "generated": "[YYYY-MM-DD]",
+    "source": "prd",
+    "totalTasks": 0,
+    "totalPoints": 0
+  },
+  "phases": [
     {
-      "id": "TASK-001",
-      "title": "[Task Title]",
-      "description": "[Detailed description]",
-      "phase": 1,
-      "priority": "high",
-      "size": 3,
-      "status": "pending",
-      "dependencies": [],
-      "requirements": ["FR-001"],
-      "acceptance_criteria": [
-        "[Criterion 1]",
-        "[Criterion 2]"
-      ],
-      "tags": ["frontend", "mvp"],
-      "assignee": null,
-      "subtasks": [
+      "id": "P0",
+      "name": "Setup & Foundation",
+      "description": "Project initialization and environment setup",
+      "tasks": [
         {
-          "id": "TASK-001-1",
-          "title": "[Subtask]",
-          "status": "pending"
+          "id": "T001",
+          "title": "[Task Title]",
+          "description": "[What needs to be done]",
+          "type": "setup",
+          "priority": "high",
+          "points": 2,
+          "estimatedHours": 4,
+          "dependencies": [],
+          "requirements": ["NFR-001"],
+          "acceptanceCriteria": [
+            "[Criterion 1]",
+            "[Criterion 2]"
+          ],
+          "tags": ["setup", "foundation"]
         }
       ]
+    },
+    {
+      "id": "P1",
+      "name": "Core MVP",
+      "description": "Essential features for minimum viable product",
+      "tasks": [
+        {
+          "id": "T010",
+          "title": "[Task Title]",
+          "description": "[What needs to be done]",
+          "type": "development",
+          "priority": "high",
+          "points": 5,
+          "estimatedHours": 8,
+          "dependencies": ["T001"],
+          "requirements": ["FR-001", "FR-002"],
+          "acceptanceCriteria": [
+            "[Criterion 1]",
+            "[Criterion 2]"
+          ],
+          "tags": ["mvp", "core"]
+        }
+      ]
+    },
+    {
+      "id": "P2",
+      "name": "Enhanced Features",
+      "description": "Additional features and improvements",
+      "tasks": []
+    },
+    {
+      "id": "P3",
+      "name": "Polish & Launch",
+      "description": "Final polish, testing, and deployment",
+      "tasks": []
     }
-  ],
-  "metadata": {
-    "total_tasks": 0,
-    "by_phase": {
-      "0": 0,
-      "1": 0,
-      "2": 0,
-      "3": 0
-    },
-    "by_priority": {
-      "high": 0,
-      "medium": 0,
-      "low": 0
-    },
-    "total_points": 0
-  }
+  ]
 }
 ```
+
+**Format Notes**:
+- `type`: One of `setup`, `design`, `development`, `testing`, `deployment`, `documentation`
+- `priority`: One of `high`, `medium`, `low`
+- `points`: Fibonacci sizing (1, 2, 3, 5, 8, 13)
+- `dependencies`: Array of task IDs that must complete first
+- `requirements`: Links to PRD requirement IDs (FR-xxx, NFR-xxx)
 
 ### risks.md
 ```markdown
@@ -510,7 +544,7 @@ Analyzing existing codebase...
 Created files:
 - `.cognispec/plan/architecture.md` - Technical architecture
 - `.cognispec/plan/phases.md` - 4-phase development plan
-- `.cognispec/plan/tasks.json` - 23 tasks (Taskmaster compatible)
+- `.cognispec/plan/tasks.json` - 23 tasks (Cognispec native format)
 - `.cognispec/plan/risks.md` - 7 identified risks
 - `.cognispec/workflows/dev.md` - Development workflow
 - `.cognispec/workflows/test.md` - Testing strategy

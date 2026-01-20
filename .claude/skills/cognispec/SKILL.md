@@ -48,11 +48,13 @@ All Cognispec outputs go to `.cognispec/` directory:
 │   ├── summary.md        # Executive summary (Layer 1)
 │   ├── overview.md       # Problem & solution (Layer 2)
 │   ├── requirements.md   # Detailed requirements (Layer 3)
-│   └── appendix.md       # Appendix (Layer 4)
+│   ├── appendix.md       # Appendix (Layer 4)
+│   └── human/            # Human-readable version
+│       └── index.html    # Interactive PRD (open in browser)
 ├── plan/
 │   ├── architecture.md   # Technical architecture
 │   ├── phases.md         # Phased plan
-│   ├── tasks.json        # Task breakdown (Taskmaster compatible)
+│   ├── tasks.json        # Task breakdown (Cognispec native format)
 │   └── risks.md          # Risks and mitigation
 └── CLAUDE.md             # Project context for Claude Code
 ```

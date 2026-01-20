@@ -53,16 +53,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 │   ├── summary.md            # Executive summary (Layer 1)
 │   ├── overview.md           # Problem & solution (Layer 2)
 │   ├── requirements.md       # Detailed requirements (Layer 3)
-│   └── appendix.md           # Technical appendix (Layer 4)
+│   ├── appendix.md           # Technical appendix (Layer 4)
+│   └── human/                # Human-readable version
+│       ├── index.html        # Interactive PRD (progressive disclosure)
+│       └── backup/           # Version backups
 ├── plan/
 │   ├── architecture.md       # Technical architecture
 │   ├── phases.md             # Phased development plan
-│   ├── tasks.json            # Task breakdown (Taskmaster compatible)
+│   ├── tasks.json            # Task breakdown (Cognispec native format)
 │   └── risks.md              # Risk assessment
-└── workflows/
-    ├── dev.md                # Development workflow
-    ├── test.md               # Testing strategy
-    └── deploy.md             # Deployment plan
+├── workflows/
+│   ├── dev.md                # Development workflow
+│   ├── test.md               # Testing strategy
+│   └── deploy.md             # Deployment plan
+└── scripts/
+    ├── md2html.js            # Markdown to HTML converter
+    └── package.json          # Script dependencies
 ```
 
 ## Design Principles
@@ -84,7 +90,17 @@ All documents are structured in layers to reduce cognitive load:
 - Uses Skills for auto-triggered guidance
 - Uses Slash Commands for explicit workflows
 - Outputs stored in `.cognispec/` directory
-- Compatible with Task-Master-AI task format
+- Uses Cognispec native task format (simple, human-readable)
+
+## Meta Rules
+
+### Language Rules
+| Scenario | Language |
+|----------|----------|
+| User communication | Chinese (or user's preferred language) |
+| Generated requirement documents | **English only** |
+
+> **Important**: All PRD documents, technical specifications, and output files must be written in English. Conversations with users can be in Chinese or their preferred language.
 
 ## Development Guidelines
 
@@ -92,7 +108,8 @@ All documents are structured in layers to reduce cognitive load:
 - Keep commands focused and single-purpose
 - Support both Chinese and English interactions
 - Maintain progressive disclosure in all outputs
-- Generate Taskmaster-compatible task JSON for interoperability
+- Use Cognispec native task format (Task-Master-AI export available as optional P2 feature)
+- **All generated documents must be in English**
 
 ## Project Status
 
@@ -107,5 +124,6 @@ All documents are structured in layers to reduce cognitive load:
 ### Future Enhancements
 - [ ] Multiple PRD templates
 - [ ] Export to other formats (Notion, Confluence)
+- [ ] Task-Master-AI export (`/plan --export=taskmaster`)
 - [ ] Team collaboration features
 - [ ] Version comparison for PRD updates

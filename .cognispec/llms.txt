@@ -1,52 +1,65 @@
-# llms.txt - Cognispec Project Documentation Index
-# AI-friendly documentation index for autonomous agent interactions
+# llms.txt - Cognispec - AI-Native Requirements Documentation Plugin Documentation Index
 
 ## Project Overview
+> Cognispec - AI-Native Requirements Documentation Plugin: AI-Native Requirements Documentation
 
-Cognispec is a Claude Code plugin for AI-native requirements documentation. It transforms vague product ideas into structured, progressive disclosure PRD documents optimized for both AI consumption and human readability.
+**Cognispec** is a Claude Code plugin that transforms vague product ideas into structured, AI-optimized requirement documents. Designed for independent developers who use AI-assisted development, it solves the critical problem of "requirement amnesia" - where developers forget their own requirements after project interruptions, causing 80% completed projects to be discarded. Cognispec acts as an "external brain" that persists requirement memory, ensuring both humans and AI can align at any time through progressive disclosure documentation.
 
 ## Target Users
-
-Independent developers (indie hackers, freelancers) using AI-assisted development.
+See overview.md for user personas
 
 ## Core Workflow
-
+```
 /discover → /research → /prd → /plan → Development
+```
 
-## Key Documents
+---
+
+## Document Index
 
 ### Discovery Phase
-- Interview Record: .cognispec/discovery/interview.md
-- Competitor Research: .cognispec/discovery/research.md
+| Document | Path | Description |
+|----------|------|-------------|
+| Interview | .cognispec/discovery/interview.md | Requirements interview record |
+| Research | .cognispec/discovery/research.md | Competitor/market research |
 
 ### PRD Documents (Progressive Disclosure)
-- Layer 1 - Summary (30s): .cognispec/prd/summary.md
-- Layer 2 - Overview (2min): .cognispec/prd/overview.md
-- Layer 3 - Requirements: .cognispec/prd/requirements.md
-- Layer 4 - Appendix: .cognispec/prd/appendix.md
+| Layer | Path | Reading Time | Description |
+|-------|------|--------------|-------------|
+| 1 | .cognispec/prd/summary.md | 30 sec | Executive summary |
+| 2 | .cognispec/prd/overview.md | 2 min | Problem & solution |
+| 3 | .cognispec/prd/requirements.md | As needed | Detailed requirements |
+| 4 | .cognispec/prd/appendix.md | Expert | Technical appendix |
 
 ### Development Planning
-- Architecture: .cognispec/plan/architecture.md
-- Phases: .cognispec/plan/phases.md
-- Tasks (JSON): .cognispec/plan/tasks.json
-- Risks: .cognispec/plan/risks.md
+> No planning documents found. Run `/plan` to generate.
+
+
+---
 
 ## AI Instructions
 
-1. Start with summary.md for quick project context
-2. Read overview.md for problem/solution understanding
-3. Use requirements.md for specific feature details
-4. Reference appendix.md for technical decisions and glossary
-5. Tasks are in Cognispec native JSON format (simple, human-readable, phase-based)
+### Reading Priority
+1. Start with `summary.md` for quick project context (30 seconds)
+2. Read `overview.md` for problem/solution understanding (2 minutes)
+3. Use `requirements.md` for specific feature details (as needed)
+4. Reference `appendix.md` for technical decisions and glossary (expert level)
 
-## Document Conventions
+### Task Format
+Tasks follow Cognispec native JSON format:
+- Simple, human-readable structure
+- Phase-based organization
+- See `tasks.json` for implementation tasks
 
-- All documents are in English
-- Markdown with YAML frontmatter
-- Single file < 15KB for context window efficiency
-- Semantic filenames for efficient Glob/Grep search
+### Code Generation Guidelines
+- Follow patterns established in existing codebase
+- Refer to `appendix.md` for technical constraints
+- Check `requirements.md` for acceptance criteria before implementation
 
-## Version
+---
 
+## Metadata
 - PRD Version: 1.0.0
-- Last Updated: 2024-01-20
+- Template: AI Agent / Plugin
+- Generated: 2026-01-21
+- Generator: Cognispec generate-llms-txt.js

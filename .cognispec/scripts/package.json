@@ -4,7 +4,10 @@
   "description": "Cognispec utility scripts for PRD conversion",
   "scripts": {
     "build:html": "node md2html.js",
-    "build:html:backup": "node md2html.js --backup"
+    "build:html:backup": "node md2html.js --backup",
+    "build:llms": "node generate-llms-txt.js",
+    "build:llms:verbose": "node generate-llms-txt.js --verbose",
+    "build:all": "node md2html.js --backup && node generate-llms-txt.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

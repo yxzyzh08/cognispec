@@ -4,7 +4,38 @@
 Generate a comprehensive PRD with progressive disclosure structure from gathered requirements and research.
 
 ## Arguments
-- `$ARGUMENTS` - Optional: specific sections to generate or update
+- `$ARGUMENTS` - Optional arguments:
+  - `--template=<type>` - Specify template type: `ai-agent`, `mobile-app`, or `web-app`
+  - Specific sections to generate or update
+
+## Template Selection
+
+### Available Templates
+
+| Template | Best For | Template File |
+|----------|----------|---------------|
+| `ai-agent` | Claude Code plugins, MCP servers, AI tools | `.cognispec/templates/ai-agent.md` |
+| `mobile-app` | iOS, Android, cross-platform apps | `.cognispec/templates/mobile-app.md` |
+| `web-app` | Web applications with frontend/backend | `.cognispec/templates/web-app.md` |
+
+### Template Detection Process
+
+1. **Parse arguments**: Check if `$ARGUMENTS` contains `--template=<type>`
+2. **If template specified**: Read and apply the corresponding template
+3. **If no template specified**: Display template selection prompt:
+
+```
+Which template best fits your project?
+
+1. **ai-agent** - Claude Code plugins, MCP servers, AI tools, chatbots
+2. **mobile-app** - iOS, Android, React Native, Flutter apps
+3. **web-app** - SaaS, web applications, admin dashboards
+
+Please select (1-3) or type the template name:
+```
+
+4. **Load template**: Read `.cognispec/templates/<selected>.md`
+5. **Apply template sections**: Add template-specific sections to each PRD document
 
 ## Instructions
 
@@ -43,6 +74,7 @@ Create four files following progressive disclosure:
 **Layer 1: summary.md (30秒概览)**
 - Executive summary (one paragraph)
 - Key metrics dashboard
+- **Template field** (record which template was used)
 - Quick links to other sections
 
 **Layer 2: overview.md (2分钟深入)**
@@ -50,12 +82,14 @@ Create four files following progressive disclosure:
 - Solution overview
 - User personas
 - Core user stories
+- **Template-specific sections** (from selected template's "Overview Additions")
 
 **Layer 3: requirements.md (详细需求)**
 - Functional requirements (prioritized)
 - Non-functional requirements
 - User stories with acceptance criteria
 - Edge cases
+- **Template-specific sections** (from selected template's "Requirements Additions")
 
 **Layer 4: appendix.md (专家级细节)**
 - Technical constraints
@@ -63,6 +97,7 @@ Create four files following progressive disclosure:
 - Glossary
 - Research references
 - Change log
+- **Template-specific sections** (from selected template's "Appendix Additions")
 
 #### Step 3: Generate Human-Readable HTML
 
@@ -87,6 +122,29 @@ After generating Markdown files, run the conversion script to create interactive
 3. **Inform user**:
    - Tell the user to run the script if they want HTML output
    - Provide the command to run
+
+#### Step 4: Generate llms.txt
+
+Generate the AI-friendly documentation index using the **script** (not AI generation):
+
+```bash
+node .cognispec/scripts/generate-llms-txt.js
+```
+
+The script will:
+- Extract project metadata from `summary.md` (name, version, template)
+- Check which documents exist in discovery/, prd/, plan/
+- Generate a structured index at `.cognispec/llms.txt`
+
+> **Why Script Generation?**
+> llms.txt is an index, not creative content. Programmatic generation ensures:
+> - Consistency: Same input = same output
+> - Independence: Can run without AI session
+> - Zero token cost
+
+**Inform user**:
+- Tell the user to run the script to update llms.txt
+- Provide the command: `node .cognispec/scripts/generate-llms-txt.js`
 
 ### Quality Checks
 
@@ -137,6 +195,7 @@ Create `.cognispec/prd/` directory with:
 ## Status
 
 - **Version**: 1.0
+- **Template**: [ai-agent | mobile-app | web-app]
 - **Last Updated**: [date]
 - **Status**: Draft | In Review | Approved
 
@@ -393,41 +452,118 @@ After PRD generation:
 
 ## Example Interaction
 
+### Example 1: With Template Argument
+
 ```
-You: I'll generate the PRD based on your discovery interview and research.
+User: /prd --template=ai-agent
+
+You: I'll generate the PRD using the **ai-agent** template.
 
 Reading `.cognispec/discovery/interview.md`...
 Reading `.cognispec/discovery/research.md`...
+Loading template `.cognispec/templates/ai-agent.md`...
 
 Generating PRD with progressive disclosure structure...
 
 ✅ PRD generated successfully!
 
+**Template Used**: ai-agent (Claude Code plugins, MCP servers, AI tools)
+
 **AI-Optimized Documents (Markdown):**
 - `.cognispec/prd/summary.md` - Executive summary (30秒概览)
-- `.cognispec/prd/overview.md` - Problem & solution (2分钟深入)
-- `.cognispec/prd/requirements.md` - Detailed requirements
-- `.cognispec/prd/appendix.md` - Technical appendix
+- `.cognispec/prd/overview.md` - Problem & solution + Integration Architecture, Capability Mapping
+- `.cognispec/prd/requirements.md` - Detailed requirements + MCP Configuration, Skills Structure
+- `.cognispec/prd/appendix.md` - Technical appendix + MCP Server Implementation, Skills Directory
+
+**AI Discovery Index:**
+- `.cognispec/llms.txt` - Run script to update
 
 **Quality Check Results:**
 - [x] Completeness: All sections filled
 - [x] Testability: 12 acceptance criteria defined
 - [x] Clarity: No ambiguous terms detected
-- [x] Consistency: Terminology verified
-- [x] Progressive Disclosure: 4 layers structured
+- [x] Template: ai-agent sections included
 
 ---
 
-📄 **To generate Human-Readable HTML version:**
+📄 **To generate derived files:**
 
-First time setup (install dependencies):
 ```bash
+# First time: install dependencies
 cd .cognispec/scripts && npm install
+
+# Generate Human-Readable HTML (with backup)
+node .cognispec/scripts/md2html.js --backup
+
+# Generate AI Discovery Index (llms.txt)
+node .cognispec/scripts/generate-llms-txt.js
+
+# Or generate both at once
+npm run build:all
 ```
 
-Generate HTML:
+Then open `.cognispec/prd/human/index.html` in your browser.
+```
+
+### Example 2: Interactive Template Selection
+
+```
+User: /prd
+
+You: I'll generate the PRD based on your discovery interview and research.
+
+Reading `.cognispec/discovery/interview.md`...
+Reading `.cognispec/discovery/research.md`...
+
+**Template Selection**
+
+Which template best fits your project?
+
+| # | Template | Best For |
+|---|----------|----------|
+| 1 | ai-agent | Claude Code plugins, MCP servers, AI tools, chatbots |
+| 2 | mobile-app | iOS, Android, React Native, Flutter apps |
+| 3 | web-app | SaaS, web applications, admin dashboards |
+
+Please select (1-3) or type the template name:
+
+User: 2
+
+You: Using **mobile-app** template.
+
+Loading template `.cognispec/templates/mobile-app.md`...
+
+Generating PRD with progressive disclosure structure...
+
+✅ PRD generated successfully!
+
+**Template Used**: mobile-app (iOS, Android, cross-platform apps)
+
+**AI-Optimized Documents (Markdown):**
+- `.cognispec/prd/summary.md` - Executive summary (30秒概览)
+- `.cognispec/prd/overview.md` - Problem & solution + Platform Strategy, Device Support Matrix
+- `.cognispec/prd/requirements.md` - Detailed requirements + Screen Flows, Offline Requirements
+- `.cognispec/prd/appendix.md` - Technical appendix + App Store Checklist
+
+**AI Discovery Index:**
+- `.cognispec/llms.txt` - Run script to update
+
+---
+
+📄 **To generate derived files:**
+
 ```bash
+# First time: install dependencies
+cd .cognispec/scripts && npm install
+
+# Generate Human-Readable HTML (with backup)
 node .cognispec/scripts/md2html.js --backup
+
+# Generate AI Discovery Index (llms.txt)
+node .cognispec/scripts/generate-llms-txt.js
+
+# Or generate both at once
+npm run build:all
 ```
 
 Then open `.cognispec/prd/human/index.html` in your browser.

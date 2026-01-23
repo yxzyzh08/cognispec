@@ -1,12 +1,23 @@
+---
+name: cognispec
+description: |
+  Product requirements documentation and PRD generation skill with progressive disclosure structure.
+
+  TRIGGERS - Activate when user:
+  - Discusses product ideas, features, or requirements
+  - Wants to create PRD (Product Requirements Document)
+  - Needs competitor analysis or market research
+  - Mentions: 需求, PRD, 产品文档, 竞品分析, feature planning, product spec, requirement discovery
+
+  CAPABILITIES:
+  - /discover: Structured requirements interview (质量评分 ≥70 才能继续)
+  - /research: Competitor and market analysis with web search
+  - /prd: Generate 4-layer progressive disclosure PRD
+
+  OUTPUT: All documents saved to .cognispec/ directory
+---
+
 # Cognispec: Product Requirements Documentation Skill
-
-## Trigger Conditions
-
-This skill activates when the user:
-- Discusses product ideas, features, or requirements
-- Wants to create PRD (Product Requirements Document)
-- Needs to analyze competitors or market research
-- Mentions keywords: "需求", "PRD", "产品文档", "竞品分析", "feature planning", "product spec"
 
 ## Core Principles
 
@@ -50,6 +61,13 @@ All Cognispec outputs go to `.cognispec/` directory:
 │   └── human/            # Human-readable version
 │       └── index.html    # Interactive PRD (open in browser)
 └── CLAUDE.md             # Project context for Claude Code
+
+.claude/skills/cognispec/
+├── SKILL.md              # Skill definition with frontmatter
+└── references/           # Templates (auto-loaded by Claude)
+    ├── ai-agent.md       # AI agent/plugin template
+    ├── mobile-app.md     # Mobile app template
+    └── web-app.md        # Web app template
 ```
 
 ## Workflow Guidelines

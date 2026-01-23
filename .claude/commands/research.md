@@ -1,3 +1,13 @@
+---
+name: research
+description: Conduct competitor analysis and market research to validate assumptions
+allowed-tools:
+  - Read
+  - Write
+  - WebSearch
+  - WebFetch
+---
+
 # /research - Competitor & Market Research
 
 ## Purpose

@@ -1,3 +1,14 @@
+---
+name: prd
+description: Generate comprehensive PRD with progressive disclosure structure from gathered requirements
+disable-model-invocation: true
+allowed-tools:
+  - Read
+  - Write
+  - Bash
+  - Glob
+---
+
 # /prd - Generate Product Requirements Document
 
 ## Purpose
@@ -14,9 +25,9 @@ Generate a comprehensive PRD with progressive disclosure structure from gathered
 
 | Template | Best For | Template File |
 |----------|----------|---------------|
-| `ai-agent` | Claude Code plugins, MCP servers, AI tools | `.cognispec/templates/ai-agent.md` |
-| `mobile-app` | iOS, Android, cross-platform apps | `.cognispec/templates/mobile-app.md` |
-| `web-app` | Web applications with frontend/backend | `.cognispec/templates/web-app.md` |
+| `ai-agent` | Claude Code plugins, MCP servers, AI tools | `.claude/skills/cognispec/references/ai-agent.md` |
+| `mobile-app` | iOS, Android, cross-platform apps | `.claude/skills/cognispec/references/mobile-app.md` |
+| `web-app` | Web applications with frontend/backend | `.claude/skills/cognispec/references/web-app.md` |
 
 ### Template Detection Process
 
@@ -34,7 +45,7 @@ Which template best fits your project?
 Please select (1-3) or type the template name:
 ```
 
-4. **Load template**: Read `.cognispec/templates/<selected>.md`
+4. **Load template**: Read `.claude/skills/cognispec/references/<selected>.md`
 5. **Apply template sections**: Add template-specific sections to each PRD document
 
 ## Instructions
@@ -461,7 +472,7 @@ You: I'll generate the PRD using the **ai-agent** template.
 
 Reading `.cognispec/discovery/interview.md`...
 Reading `.cognispec/discovery/research.md`...
-Loading template `.cognispec/templates/ai-agent.md`...
+Loading template `.claude/skills/cognispec/references/ai-agent.md`...
 
 Generating PRD with progressive disclosure structure...
 
@@ -531,7 +542,7 @@ User: 2
 
 You: Using **mobile-app** template.
 
-Loading template `.cognispec/templates/mobile-app.md`...
+Loading template `.claude/skills/cognispec/references/mobile-app.md`...
 
 Generating PRD with progressive disclosure structure...
 

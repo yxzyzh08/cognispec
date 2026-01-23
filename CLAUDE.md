@@ -32,11 +32,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 .claude/
 ├── skills/
 │   └── cognispec/
-│       └── SKILL.md          # Auto-triggered product discovery skill
+│       ├── SKILL.md          # Auto-triggered skill (with YAML frontmatter)
+│       └── references/       # Templates (auto-loaded by Claude)
+│           ├── ai-agent.md   # AI agent/plugin template
+│           ├── mobile-app.md # Mobile app template
+│           └── web-app.md    # Web app template
 └── commands/
-    ├── discover.md           # /discover command
-    ├── research.md           # /research command
-    └── prd.md                # /prd command
+    ├── discover.md           # /discover command (with frontmatter)
+    ├── research.md           # /research command (with frontmatter)
+    └── prd.md                # /prd command (disable-model-invocation)
 
 .cognispec/                   # Output directory
 ├── discovery/
@@ -54,6 +58,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
     ├── md2html.js            # Markdown to HTML converter
     └── package.json          # Script dependencies
 ```
+
+### Skill & Command Configuration
+
+All skills and commands use YAML frontmatter for proper triggering:
+
+```yaml
+---
+name: skill-name
+description: |
+  Description for Claude to determine when to trigger.
+  Include keywords and use cases.
+disable-model-invocation: true  # Optional: prevent auto-trigger
+allowed-tools:                   # Optional: restrict available tools
+  - Read
+  - Write
+---
+```
+
+**Key Configuration Options:**
+- `name`: Skill/command identifier (becomes `/name` command)
+- `description`: **Critical** - Claude only reads this to decide triggering
+- `disable-model-invocation`: Prevent Claude from auto-triggering (use for side-effect commands)
+- `allowed-tools`: Restrict which tools the command can use
 
 ## Design Principles
 
@@ -75,6 +102,24 @@ All documents are structured in layers to reduce cognitive load:
 - Uses Slash Commands for explicit workflows
 - Outputs stored in `.cognispec/` directory
 
+### Quality Gate System
+`/discover` includes a requirements quality scoring system:
+
+| Dimension | Weight | Minimum |
+|-----------|--------|---------|
+| Problem Clarity | 20% | 12/20 |
+| User Definition | 15% | 9/15 |
+| Business Impact | 15% | 9/15 |
+| Solution Vision | 15% | 9/15 |
+| MVP Scope | 10% | 6/10 |
+| Success Metrics | 15% | 9/15 |
+| Constraints | 10% | 6/10 |
+
+**Score Thresholds:**
+- ⚠️ **< 70**: Continue discovery or clarify requirements
+- ✅ **70-89**: Ready for `/research`
+- 🎯 **90+**: Ready for `/prd`
+
 ## Meta Rules
 
 ### Language Rules
@@ -95,15 +140,20 @@ All documents are structured in layers to reduce cognitive load:
 
 ## Project Status
 
-✅ MVP Implementation Complete - Ready for use
+✅ MVP v1.1 - Aligned with Official Best Practices
 
 ### Implemented Features
-- [x] `/discover` - Requirements discovery interview
+- [x] `/discover` - Requirements discovery interview with quality scoring
 - [x] `/research` - Competitor/market research
 - [x] `/prd` - PRD generation with progressive disclosure
+- [x] YAML frontmatter for all skills and commands
+- [x] Quality gate system (score ≥70 to proceed)
+- [x] Multiple PRD templates (ai-agent, mobile-app, web-app)
+- [x] `references/` directory for templates (official structure)
+- [x] `disable-model-invocation` for `/prd` command
 
 ### Future Enhancements
-- [ ] Multiple PRD templates
 - [ ] Export to other formats (Notion, Confluence)
 - [ ] Team collaboration features
 - [ ] Version comparison for PRD updates
+- [ ] Hooks integration for automated validation

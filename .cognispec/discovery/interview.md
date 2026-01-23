@@ -45,14 +45,13 @@ Individual developers (indie hackers, freelancers) lack a systematic tool for re
 ### Core Workflow
 
 ```
-/discover → /research → /prd → /plan → Development
+/discover → /research → /prd → Development
 ```
 
 Current commands (implemented):
 - ✅ `/discover` - Requirements discovery interview
 - ✅ `/research` - Competitor/market research
 - ✅ `/prd` - PRD generation
-- ✅ `/plan` - Development plan generation
 
 ### MVP Scope
 
@@ -306,83 +305,7 @@ Generate new index.html
 | Backup strategy | Auto backup before each regeneration |
 | Incremental update | Both: natural language + `/prd update F001` |
 | AI review | `/prd --review` parameter |
-| **Task format** | **Cognispec native format (not Task-Master-AI)** |
 
----
-
-## Technical Decision Record: Task Format
-
-### TDR-001: Cognispec Native Task Format vs Task-Master-AI
-
-**Date**: 2024-01-20
-
-**Status**: Decided
-
-**Context**:
-Task-Master-AI is a popular AI-driven task management tool that converts PRDs into structured task lists. Initial design considered mandatory compatibility with Task-Master-AI format.
-
-**Research Findings**:
-
-| Factor | Assessment |
-|--------|------------|
-| Is it a standard? | ❌ No. No unified AI task format standard exists |
-| Is it popular? | ✅ Yes. Most commonly referenced in Claude Code ecosystem |
-| Must we support it? | ❌ No. Multiple alternatives exist |
-| Worth supporting? | ⚠️ Optional. Adds complexity but provides ecosystem compatibility |
-
-**Competitive Landscape**:
-
-| Tool | Methodology | Task Format |
-|------|-------------|-------------|
-| Task-Master-AI | Task-driven development | tasks.json |
-| ShipSpec | Spec-driven development | TASKS.json (different format) |
-| PRD-Taskmaster | PRD-driven | Custom format |
-| OpenSpec | Spec workflow | No standard format |
-
-**Decision**:
-Use **Cognispec native format** as primary, with **optional Task-Master-AI export** as P2 feature.
-
-**Rationale**:
-1. **Indie developers don't need complex task management** - simple lists are sufficient
-2. **Avoid over-engineering** - aligns with Cognispec's lightweight principle
-3. **Maintain flexibility** - can add export features based on future demand
-4. **Reduce maintenance burden** - no need to track Task-Master-AI format changes
-
-**Cognispec Native Format**:
-```json
-{
-  "metadata": {
-    "project": "Project Name",
-    "version": "1.0.0",
-    "generated": "2024-01-20",
-    "source": "prd"
-  },
-  "phases": [
-    {
-      "id": "P1",
-      "name": "Design Phase",
-      "tasks": [
-        {
-          "id": "T001",
-          "title": "Task title",
-          "description": "Task description",
-          "type": "design|development|testing|deployment",
-          "priority": "high|medium|low",
-          "estimatedHours": 4,
-          "dependencies": [],
-          "acceptanceCriteria": ["Criterion 1", "Criterion 2"]
-        }
-      ]
-    }
-  ]
-}
-```
-
-**Consequences**:
-- ✅ Simpler, human-readable format
-- ✅ Phase-based organization matches natural workflow
-- ✅ No external tool dependencies
-- ⚠️ Users needing Task-Master-AI must wait for P2 export feature
 
 ---
 

@@ -227,8 +227,6 @@ Specification → Implementation → Verification Loop
 
 ## Key Documents
 - PRD: .cognispec/prd/index.md
-- Architecture: .cognispec/plan/architecture.md
-- Tasks: .cognispec/plan/tasks.json
 
 ## AI Instructions
 [Special handling instructions for AI agents]
@@ -300,7 +298,7 @@ Specification → Implementation → Verification Loop
 | Markdown + Frontmatter | Standard format, widely supported |
 | HTML progressive disclosure | Matches UX best practices (NN/g) |
 | Dual-document architecture | Unique differentiator, no competitor offers this |
-| `/discover → /research → /prd → /plan` workflow | Matches professional PM workflow |
+| `/discover → /research → /prd` workflow | Matches professional PM workflow |
 
 ### 🔄 Suggested Improvements to Current Design
 

@@ -175,12 +175,12 @@ RED → GREEN → REFACTOR
 
 ### 4.1 产品定位
 
-**一句话**：用 Claude Code 原生能力，将模糊想法转化为结构化的、人脑友好的需求文档和研发计划。
+**一句话**：用 Claude Code 原生能力，将模糊想法转化为结构化的、人脑友好的需求文档。
 
 **差异化**：
 - 渐进式披露优先（Progressive Disclosure First）
 - 深度 Claude Code 原生集成（不是通用 AI 工具）
-- 面向研发全流程（需求 → 设计 → 开发 → 测试 → 部署）
+- 专注需求文档生成
 
 ### 4.2 核心功能模块
 
@@ -213,27 +213,6 @@ RED → GREEN → REFACTOR
 └── CLAUDE.md             # 项目上下文
 ```
 
-#### 模块二：研发计划生成
-
-**输入**：
-- 已确认的 PRD
-- 技术栈偏好
-- 团队规模/约束
-
-**输出**：
-```
-.cognispec/
-├── plan/
-│   ├── architecture.md   # 技术架构设计
-│   ├── phases.md         # 分阶段计划
-│   ├── tasks.json        # 任务分解（可导入 Taskmaster）
-│   └── risks.md          # 风险与缓解
-└── workflows/
-    ├── dev.md            # 开发工作流
-    ├── test.md           # 测试策略
-    └── deploy.md         # 部署方案
-```
-
 ### 4.3 技术实现方案
 
 **推荐方案：Skills + Slash Commands 混合**
@@ -246,8 +225,7 @@ RED → GREEN → REFACTOR
 └── commands/
     ├── discover.md       # /discover - 启动需求发现
     ├── research.md       # /research - 竞品调研
-    ├── prd.md            # /prd - 生成 PRD
-    └── plan.md           # /plan - 生成研发计划
+    └── prd.md            # /prd - 生成 PRD
 ```
 
 **为什么不用 MCP**：
@@ -306,12 +284,7 @@ RED → GREEN → REFACTOR
 - 竞品分析能力
 - 市场调研整合
 
-**Phase 3: 计划生成**
-- `/plan` 命令
-- 任务分解
-- 与 Taskmaster 格式兼容
-
-**Phase 4: 优化迭代**
+**Phase 3: 优化迭代**
 - 渐进式披露模板优化
 - 多模板支持
 - 团队协作特性
@@ -334,7 +307,7 @@ RED → GREEN → REFACTOR
 **核心差异点**：
 1. **渐进式披露**：这是其他工具没有强调的
 2. **中文优先**：面向中文用户优化
-3. **全流程覆盖**：不只是 PRD，还有研发计划
+3. **专注需求文档**：聚焦 PRD 生成，不过度扩展
 
 ### 5.3 下一步行动
 

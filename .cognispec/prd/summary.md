@@ -36,13 +36,10 @@
 | F001 | Requirements Discovery Interview (`/discover`) | P0 | ✅ Implemented |
 | F002 | Competitor & Market Research (`/research`) | P0 | ✅ Implemented |
 | F003 | PRD Generation (`/prd`) | P0 | ✅ Implemented |
-| F004 | Development Plan Generation (`/plan`) | P0 | ✅ Implemented |
-| F005 | Cognispec Native Task Format | P0 | ✅ Implemented |
-| F006 | Multiple PRD Templates (3 types) | P1 | ✅ Implemented |
-| F007 | AI-Optimized + Human-Readable Dual Output | P1 | ✅ Implemented |
-| F008 | `llms.txt` Support (Script-generated) | P1 | ✅ Implemented |
-| F009 | Task-Master-AI Export (Optional) | P2 | ⏸️ Future |
-| F010 | Requirements Change Management | P2 | ⏸️ Future |
+| F004 | Multiple PRD Templates (3 types) | P1 | ✅ Implemented |
+| F005 | AI-Optimized + Human-Readable Dual Output | P1 | ✅ Implemented |
+| F006 | `llms.txt` Support (Script-generated) | P1 | ✅ Implemented |
+| F007 | Requirements Change Management | P2 | ⏸️ Future |
 
 ## Document History
 

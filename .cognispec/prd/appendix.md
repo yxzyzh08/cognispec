@@ -12,8 +12,7 @@
 └── commands/
     ├── discover.md           # /discover command
     ├── research.md           # /research command
-    ├── prd.md                # /prd command
-    └── plan.md               # /plan command
+    └── prd.md                # /prd command
 ```
 
 ### Output Directory Structure
@@ -37,17 +36,6 @@
 │   │   └── backup/
 │   └── .meta.json            # Version & metadata
 │
-├── plan/                     # Development planning
-│   ├── architecture.md       # Technical architecture
-│   ├── phases.md             # Phased development plan
-│   ├── tasks.json            # Task breakdown (Cognispec native format)
-│   └── risks.md              # Risk assessment
-│
-├── workflows/                # Development workflows
-│   ├── dev.md                # Development workflow
-│   ├── test.md               # Testing strategy
-│   └── deploy.md             # Deployment plan
-│
 ├── scripts/                  # Utility scripts
 │   ├── md2html.js            # Markdown to HTML converter
 │   └── package.json          # Script dependencies
@@ -65,7 +53,6 @@
 | **Markdown Parser** | marked | Lightweight, fast, minimal dependencies |
 | **Frontmatter Parser** | gray-matter | Industry standard, simple to use |
 | **HTML Styling** | Inline CSS | No external dependencies, offline-friendly |
-| **Task Format** | Cognispec Native JSON | Simple, human-readable, optimized for indie developers |
 
 ---
 
@@ -80,66 +67,6 @@
 | **Context** | CLAUDE.md for project context |
 | **Web Search** | Native Claude Code WebSearch capability |
 | **File Operations** | Native Claude Code Read/Write tools |
-
-### Cognispec Native Task Format
-
-**tasks.json Format** (Primary):
-```json
-{
-  "metadata": {
-    "project": "Project Name",
-    "version": "1.0.0",
-    "generated": "2024-01-20",
-    "source": "prd"
-  },
-  "phases": [
-    {
-      "id": "P1",
-      "name": "Design Phase",
-      "tasks": [
-        {
-          "id": "T001",
-          "title": "Task title",
-          "description": "Task description",
-          "type": "design|development|testing|deployment",
-          "priority": "high|medium|low",
-          "estimatedHours": 4,
-          "dependencies": [],
-          "acceptanceCriteria": ["Criterion 1", "Criterion 2"]
-        }
-      ]
-    }
-  ]
-}
-```
-
-**Design Rationale**:
-- Simple, human-readable structure optimized for indie developers
-- Phase-based organization matches natural development workflow
-- Acceptance criteria included for clarity
-- No complex dependency graphs or complexity scores
-
-### Task-Master-AI Export (Optional)
-
-For users who need Task-Master-AI compatibility, use `/plan --export=taskmaster`:
-
-```json
-{
-  "tasks": [
-    {
-      "id": "T001",
-      "title": "Task title",
-      "description": "Task description",
-      "priority": "high|medium|low",
-      "status": "pending|in_progress|completed",
-      "dependencies": ["T000"],
-      "estimate": "2h|1d|1w"
-    }
-  ]
-}
-```
-
-**Note**: Task-Master-AI export is a P2 feature for future implementation.
 
 ---
 
@@ -183,7 +110,6 @@ For users who need Task-Master-AI compatibility, use `/plan --export=taskmaster`
 | **Progressive Disclosure** | UX pattern that reveals information gradually, starting with essential content and allowing users to drill down for details |
 | **Dual-Document Architecture** | Generating separate versions optimized for AI consumption (Markdown) and human reading (HTML) |
 | **llms.txt** | Emerging protocol for AI discoverability, similar to robots.txt but for LLMs |
-| **Task-Master-AI** | Popular task management tool for AI-assisted development; Cognispec supports optional export to this format |
 | **MCP (Model Context Protocol)** | Claude Code protocol for connecting to external data sources and tools |
 | **Skills** | Claude Code extension mechanism that teaches Claude how to perform specific tasks |
 | **Slash Commands** | Explicit user-triggered commands in Claude Code (e.g., `/discover`) |

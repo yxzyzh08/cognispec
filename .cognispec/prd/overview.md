@@ -57,12 +57,11 @@ A Claude Code native plugin that transforms vague product ideas into structured,
 | **1. Discovery Interview** | Structured Q&A to extract requirements | Transforms vague ideas into concrete specs |
 | **2. Competitor Research** | AI-powered market analysis | Validates assumptions with real data |
 | **3. PRD Generation** | Progressive disclosure documents | AI-optimized + Human-readable |
-| **4. Development Planning** | Task breakdown with architecture | Ready for implementation |
 
 ### Core Workflow
 
 ```
-/discover → /research → /prd → /plan → Development
+/discover → /research → /prd → Development
 ```
 
 <details>
@@ -168,18 +167,6 @@ A Claude Code native plugin that transforms vague product ideas into structured,
   - [ ] 3 templates available: AI Agent, Mobile App, Web App
   - [ ] Template selection via `--template` parameter or auto-prompt
   - [ ] Templates stored in `.cognispec/templates/`
-
----
-
-### Epic: Development Planning
-
-**US-005**: As an indie developer, I want to generate a development plan from my PRD so that I have a clear roadmap for implementation.
-
-- **Priority**: Must Have (P0)
-- **Acceptance Criteria**:
-  - [ ] Plan includes architecture, phases, and tasks
-  - [ ] Tasks exported in Cognispec native JSON format
-  - [ ] Risk assessment included
 
 ---
 

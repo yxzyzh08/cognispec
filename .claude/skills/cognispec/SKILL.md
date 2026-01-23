@@ -1,4 +1,4 @@
-# Cognispec: Product Requirements & Development Planning Skill
+# Cognispec: Product Requirements Documentation Skill
 
 ## Trigger Conditions
 
@@ -6,8 +6,7 @@ This skill activates when the user:
 - Discusses product ideas, features, or requirements
 - Wants to create PRD (Product Requirements Document)
 - Needs to analyze competitors or market research
-- Wants to plan development phases
-- Mentions keywords: "需求", "PRD", "产品文档", "竞品分析", "研发计划", "feature planning", "product spec"
+- Mentions keywords: "需求", "PRD", "产品文档", "竞品分析", "feature planning", "product spec"
 
 ## Core Principles
 
@@ -33,7 +32,6 @@ Direct users to these commands for specific workflows:
 | `/discover` | Start requirements discovery interview |
 | `/research` | Conduct competitor/market research |
 | `/prd` | Generate PRD from gathered requirements |
-| `/plan` | Generate development plan from confirmed PRD |
 
 ## Output Structure
 
@@ -51,11 +49,6 @@ All Cognispec outputs go to `.cognispec/` directory:
 │   ├── appendix.md       # Appendix (Layer 4)
 │   └── human/            # Human-readable version
 │       └── index.html    # Interactive PRD (open in browser)
-├── plan/
-│   ├── architecture.md   # Technical architecture
-│   ├── phases.md         # Phased plan
-│   ├── tasks.json        # Task breakdown (Cognispec native format)
-│   └── risks.md          # Risks and mitigation
 └── CLAUDE.md             # Project context for Claude Code
 ```
 
@@ -70,11 +63,6 @@ All Cognispec outputs go to `.cognispec/` directory:
 1. Check if `.cognispec/discovery/` exists
 2. If not, recommend `/discover` first
 3. If yes, proceed with `/prd` to generate documentation
-
-### When User Wants Development Plan
-1. Check if `.cognispec/prd/` exists
-2. If not, recommend completing PRD first
-3. If yes, proceed with `/plan` to generate development plan
 
 ## Document Templates
 
@@ -112,7 +100,6 @@ All Cognispec outputs go to `.cognispec/` directory:
 
 ## Integration Notes
 
-- Compatible with Task-Master-AI task format
 - Uses Markdown for universal readability
 - Supports both Chinese and English
 - Works with existing CLAUDE.md project context

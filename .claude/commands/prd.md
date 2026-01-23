@@ -133,7 +133,7 @@ node .cognispec/scripts/generate-llms-txt.js
 
 The script will:
 - Extract project metadata from `summary.md` (name, version, template)
-- Check which documents exist in discovery/, prd/, plan/
+- Check which documents exist in discovery/, prd/
 - Generate a structured index at `.cognispec/llms.txt`
 
 > **Why Script Generation?**
@@ -448,7 +448,7 @@ node .cognispec/scripts/md2html.js --backup
 After PRD generation:
 1. Review each layer for completeness
 2. Share with stakeholders for feedback
-3. `/plan` - to generate development plan from approved PRD
+3. Begin development based on the documented requirements
 
 ## Example Interaction
 
@@ -570,5 +570,5 @@ Then open `.cognispec/prd/human/index.html` in your browser.
 
 ---
 
-Would you like me to walk through any section, or shall we proceed to `/plan` for development planning?
+Would you like me to walk through any section, or proceed to development?
 ```

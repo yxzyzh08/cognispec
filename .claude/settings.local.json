@@ -10,10 +10,14 @@
       "Bash(test:*)",
       "Bash(node generate-llms-txt.js:*)",
       "WebFetch(domain:*)",
-      "WebFetch(domain:arize.com)",
-      "WebFetch(domain:www.rankability.com)",
-      "WebFetch(domain:www.gitbook.com)",
-      "WebFetch(domain:getpublii.com)"
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Bash(findstr:*)",
+      "Bash(cd:*)"
+    ],
+      "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(shutdown:*)"
     ]
   },
   "language": "chinese"

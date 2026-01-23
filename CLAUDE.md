@@ -4,11 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Cognispec** is a Claude Code plugin designed for two core purposes:
-
-1. **Product Requirements Research**: Leverage Claude Code capabilities to conduct product requirement analysis and generate human-readable product requirement documents with progressive disclosure structure.
-
-2. **Development Planning**: Based on confirmed requirements documents, create detailed product development plans covering design, development, testing, and deployment phases.
+**Cognispec** is a Claude Code plugin designed to leverage Claude Code capabilities to conduct product requirement analysis and generate human-readable product requirement documents with progressive disclosure structure.
 
 ## Quick Start
 
@@ -19,18 +15,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `/discover` | Requirements discovery interview | Start here - gather product requirements |
 | `/research` | Competitor/market research | After discovery - validate assumptions |
 | `/prd` | Generate PRD | After research - create documentation |
-| `/plan` | Generate development plan | After PRD - plan implementation |
 
 ### Recommended Workflow
 
 ```
-/discover → /research → /prd → /plan → Development
+/discover → /research → /prd → Development
 ```
 
 1. **Start with `/discover`**: Conduct structured interview to understand the product
 2. **Run `/research`**: Analyze competitors and market best practices
 3. **Generate `/prd`**: Create progressive disclosure PRD documents
-4. **Create `/plan`**: Generate development plan with tasks and architecture
 
 ## Plugin Structure
 
@@ -42,8 +36,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 └── commands/
     ├── discover.md           # /discover command
     ├── research.md           # /research command
-    ├── prd.md                # /prd command
-    └── plan.md               # /plan command
+    └── prd.md                # /prd command
 
 .cognispec/                   # Output directory
 ├── discovery/
@@ -57,15 +50,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 │   └── human/                # Human-readable version
 │       ├── index.html        # Interactive PRD (progressive disclosure)
 │       └── backup/           # Version backups
-├── plan/
-│   ├── architecture.md       # Technical architecture
-│   ├── phases.md             # Phased development plan
-│   ├── tasks.json            # Task breakdown (Cognispec native format)
-│   └── risks.md              # Risk assessment
-├── workflows/
-│   ├── dev.md                # Development workflow
-│   ├── test.md               # Testing strategy
-│   └── deploy.md             # Deployment plan
 └── scripts/
     ├── md2html.js            # Markdown to HTML converter
     └── package.json          # Script dependencies
@@ -90,7 +74,6 @@ All documents are structured in layers to reduce cognitive load:
 - Uses Skills for auto-triggered guidance
 - Uses Slash Commands for explicit workflows
 - Outputs stored in `.cognispec/` directory
-- Uses Cognispec native task format (simple, human-readable)
 
 ## Meta Rules
 
@@ -108,7 +91,6 @@ All documents are structured in layers to reduce cognitive load:
 - Keep commands focused and single-purpose
 - Support both Chinese and English interactions
 - Maintain progressive disclosure in all outputs
-- Use Cognispec native task format (Task-Master-AI export available as optional P2 feature)
 - **All generated documents must be in English**
 
 ## Project Status
@@ -119,11 +101,9 @@ All documents are structured in layers to reduce cognitive load:
 - [x] `/discover` - Requirements discovery interview
 - [x] `/research` - Competitor/market research
 - [x] `/prd` - PRD generation with progressive disclosure
-- [x] `/plan` - Development plan generation
 
 ### Future Enhancements
 - [ ] Multiple PRD templates
 - [ ] Export to other formats (Notion, Confluence)
-- [ ] Task-Master-AI export (`/plan --export=taskmaster`)
 - [ ] Team collaboration features
 - [ ] Version comparison for PRD updates

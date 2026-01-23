@@ -162,39 +162,6 @@
   - [ ] Compares against industry best practices
   - [ ] Generates improvement suggestions
 
----
-
-### Command: /plan
-
-#### FR-008: Development Plan Generation
-
-- **Description**: Generate comprehensive development plan from approved PRD
-- **User Story**: US-005
-- **Priority**: Must Have (P0)
-- **Status**: ✅ Implemented
-- **Acceptance Criteria**:
-  - [ ] Generates architecture.md, phases.md, tasks.json, risks.md
-  - [ ] Tasks in Cognispec native JSON format (simple, human-readable)
-  - [ ] Includes risk assessment with mitigation strategies
-  - [ ] Covers design, development, testing, deployment phases
-
-<details>
-<summary>📖 Output Structure</summary>
-
-```
-.cognispec/plan/
-├── architecture.md   # Technical architecture design
-├── phases.md         # Phased development plan
-├── tasks.json        # Task breakdown (Cognispec native format)
-└── risks.md          # Risk assessment
-
-.cognispec/workflows/
-├── dev.md            # Development workflow
-├── test.md           # Testing strategy
-└── deploy.md         # Deployment plan
-```
-
-</details>
 
 ---
 
@@ -272,7 +239,7 @@ node .cognispec/scripts/generate-llms-txt.js --verbose
 [Extracted from overview.md User Personas section]
 
 ## Core Workflow
-/discover → /research → /prd → /plan → Development
+/discover → /research → /prd → Development
 
 ---
 
@@ -291,14 +258,6 @@ node .cognispec/scripts/generate-llms-txt.js --verbose
 | 2 | .cognispec/prd/overview.md | 2 min | Problem & solution |
 | 3 | .cognispec/prd/requirements.md | As needed | Detailed requirements |
 | 4 | .cognispec/prd/appendix.md | Expert | Technical appendix |
-
-### Development Planning
-| Document | Path | Description |
-|----------|------|-------------|
-| Architecture | .cognispec/plan/architecture.md | Technical architecture |
-| Phases | .cognispec/plan/phases.md | Development phases |
-| Tasks | .cognispec/plan/tasks.json | Task breakdown |
-| Risks | .cognispec/plan/risks.md | Risk assessment |
 
 ---
 
@@ -371,10 +330,10 @@ Tasks use Cognispec native JSON format (simple, human-readable, phase-based).
 - **Implementation**: Skills + Slash Commands architecture
 - **Priority**: Must Have
 
-#### NFR-C02: Task Format Compatibility
+#### NFR-C02: Document Format Compatibility
 
-- **Requirement**: tasks.json uses Cognispec native format (simple, human-readable); optional export to Task-Master-AI format via `--export=taskmaster`
-- **Priority**: Could Have (P2) for Task-Master-AI export
+- **Requirement**: Generated documents use standard Markdown format compatible with major tools
+- **Priority**: Should Have (P1)
 
 ---
 
